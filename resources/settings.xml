@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!-- Settings to add. Path to media stub directory. default to temp folder.  -->
+<settings>
+	<!-- General -->
+	<category label="">
+		<!-- Movies File Path-->
+        <setting label="32002" type="lsep"/>
+		<setting label="32004" type="file" id="movies_file_path" value="path_to_files" default="\resources\temp"/>
+		<!-- TV shows File Path-->
+		<setting label="32003" type="lsep"/>
+		<setting label="32004" type="file" id="tv_file_path" value="path_to_files"/>
+		<!-- Scrapers to use-->
+		<setting type="sep"/>
+		<setting label="32005" type="lsep"/>
+		<setting label="32006" type="file" id="file" value="path_to_files"/>
+		<setting type="sep"/>
+    </category>
+	<!-- Bin Locations -->
+	<category label="32010">
+		<setting label="32011" type="bool" id="bool_bin" default="false"/>
+	</category>
+</settings>

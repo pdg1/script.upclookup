@@ -1,0 +1,78 @@
+# XBMC Media Center language file
+# Addon Name: stub maker
+# Addon id: script.stubmaker
+# Addon version: 0.0.1
+# Addon Provider: Ryan Standeven
+msgid ""
+msgstr ""
+"Project-Id-Version: XBMC-Addons\n"
+"Report-Msgid-Bugs-To: alanwww1@xbmc.org\n"
+"POT-Creation-Date: 2014-06-04 04:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+msgctxt "Addon Summary"
+msgid "Script for adding physical media to the Kodi database"
+msgstr ""
+
+msgctxt "Addon Description"
+msgid "Use this script to scan DVD and Bluray discs and add the metadata to Kodi via media stub files"
+msgstr ""
+
+# Strings 32000 to 32019 used for settings.xml
+
+msgctxt "#32000"
+msgid "Stub Maker"
+msgstr ""
+
+msgctxt "#32001"
+msgid "Default"
+msgstr ""
+
+msgctxt "#32002"
+msgid "Default file path for movies"
+msgstr ""
+
+msgctxt "#32003"
+msgid "Default file path for TV Shows"
+msgstr ""
+
+msgctxt "#32004"
+msgid "Select a file path"
+msgstr "select"
+
+msgctxt "#32005"
+msgid "Metadata Scrapers"
+msgstr ""
+
+msgctxt "#32006"
+msgid "Select"
+msgstr ""
+
+msgctxt "#32007"
+msgid "Use bin locations?"
+msgstr ""
+
+msgctxt "#32010"
+msgid "Advanced"
+msgstr ""
+
+msgctxt "#32011"
+msgid "Use bin locations?"
+msgstr ""
+
+#Buttons
+#empty strings from id 32004 to 32100
+
+#empty string with id 32109
+
+
+#empty strings from id 32205 to 32289
+
+
