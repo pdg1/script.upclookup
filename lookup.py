@@ -24,9 +24,9 @@ disc_db = dbase.connect('dvd_list.db') #connect to list of physical media for th
 movies_directory = "resources/temp/movies" # movie library directory variable
 directory_to_add = "test" # movie folder variable
 
-# read csv, and split on "," the line
-scanned_upc_list = csv.reader(open(scan_movie_upc, "rb"), delimiter=",")
-upc_input = raw_input('Enter number to find\n')
+# # read csv, and split on "," the line
+# scanned_upc_list = csv.reader(open(scan_movie_upc, "rb"), delimiter=",")
+# upc_input = raw_input('Enter number to find\n')
 
 class lookup:
     "UPC Lookup class"
@@ -44,11 +44,36 @@ class lookup:
 
 # Define function to create directory. todo add argument for movie ID
 
-def mk_file(title): # Define function with argument title (returned movie title from csv_search)
-    # make file at file path indicated with argument title
-    make_file = open('C:\Users\Ryan\Desktop\movies\%s.dvd.disk' % title, 'w')
-    # information to enter into file
-    make_file.write(
-        "<discstub> <title> No location available</title>    <message> No location was given.</message>  </discstub>")
-    # close the file
-    make_file.close()
+# def mk_file(title): # Define function with argument title (returned movie title from csv_search)
+#     # make file at file path indicated with argument title
+#     # '{path}{title}.dvd.disk'.format(path='c:/users/movies/', title='titanic (2001)')
+#     # 'C:\Users\Ryan\Desktop\movies\%s.dvd.disk' % title
+#     make_file = open('{path}{movie_title}.dvd.disk'.format(path=movies_directory+directory_to_add, movie_title=title), 'w')
+#     # information to enter into file
+#     make_file.write(
+#         "<discstub> <title> No location available</title>    <message> No location was given.</message>  </discstub>")
+#     # close the file
+#     make_file.close()
+def makedirectory():
+    try:
+        os.makedirs(movies_directory + "/" + directory_to_add)
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            raise
+
+def mk_file(title):
+    try:
+        make_file = open(
+            '{path}/{movie_title}.dvd.disk'.format(path=movies_directory + directory_to_add, movie_title=title), 'w')
+        # information to enter into file
+        make_file.write(
+            "<discstub> <title> No location available</title>    <message> No location was given.</message>  </discstub>")
+        # close the file
+        make_file.close()
+        print('done')
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            raise
+        print('error')
+    # '{path}{title}.dvd.disk'.format(path='c:/users/movies/', title='titanic (2001)')
+    # 'C:\Users\Ryan\Desktop\movies\%s.dvd.disk' % title
