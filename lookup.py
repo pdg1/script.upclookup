@@ -13,67 +13,63 @@
 # IDEA: create database in kodi for physical items. could include support for items such as Comic books / CBR's,
 # Books / eBooks, CD's(?), trading cards, etc.
 
-
-import csv, os, errno
+import os, errno
 import sqlite3 as dbase
 
 # Define variables to be used
 user_db = dbase.connect('user.db') # connect to or create user database for scanned/imported UPC's
 disc_db = dbase.connect('dvd_list.db') #connect to list of physical media for the purpose of UPC crossover
 
-movies_directory = "resources/temp/movies" # movie library directory variable
-directory_to_add = "test" # movie folder variable
+movies_directory = "resources/temp/movies/" # movie library directory variable
+directory_to_add = "discs" # movie folder variable
+textfilecontents = "<discstub> <title> No location available</title>    <message> No location was given.</message>  </discstub>"
+movie_url = "http://database.com/movie"
 
-# # read csv, and split on "," the line
-# scanned_upc_list = csv.reader(open(scan_movie_upc, "rb"), delimiter=",")
-# upc_input = raw_input('Enter number to find\n')
-
-class lookup:
-    "UPC Lookup class"
-    def __init__(self):
-        self.upc_in = upc_in
-        self.disc_title = disc_title
-
-    def makedirectory():
+# Define function to create directory.
+def mk_file(file_path, title, file_conents,movieurl):
+    try:
+        os.makedirs(file_path)
+    except Exception as e:
+        if e != errno.EEXIST:
+            # print("error is EEXIST")
+            # os.rmdir(file_path)
+            # os.makedirs(file_path)
+            # raise
+            print("Folder already exists")
+            pass
+    else:
+        print("made file folder. no errors")
+    finally:
         try:
-            os.makedirs(movies_directory + "/" + directory_to_add)
+            print("Making disc file")
+            make_file = open(
+                '{path}/{movie_title}.dvd.disk'.format(path=file_path, movie_title=title), 'w')
+            # information to enter into file
+            make_file.write(file_conents)
+            # close the file
+            make_file.close()
+            print('done')
+            print("Making nfo file")
+            make_file = open(
+                '{path}/{movie_title}.nfo'.format(path=file_path, movie_title=title), 'w')
+            # information to enter into file
+            make_file.write(movieurl)
+            # close the file
+            make_file.close()
         except OSError as e:
             if e.errno != errno.EEXIST:
+                print(e)
                 raise
+        else:
+            print("Made file successfully")
 
 
-# Define function to create directory. todo add argument for movie ID
+mk_file(movies_directory + directory_to_add, 'movietitle', textfilecontents, movie_url)
 
-# def mk_file(title): # Define function with argument title (returned movie title from csv_search)
-#     # make file at file path indicated with argument title
-#     # '{path}{title}.dvd.disk'.format(path='c:/users/movies/', title='titanic (2001)')
-#     # 'C:\Users\Ryan\Desktop\movies\%s.dvd.disk' % title
-#     make_file = open('{path}{movie_title}.dvd.disk'.format(path=movies_directory+directory_to_add, movie_title=title), 'w')
-#     # information to enter into file
-#     make_file.write(
-#         "<discstub> <title> No location available</title>    <message> No location was given.</message>  </discstub>")
-#     # close the file
-#     make_file.close()
-def makedirectory():
-    try:
-        os.makedirs(movies_directory + "/" + directory_to_add)
-    except OSError as e:
-        if e.errno != errno.EEXIST:
-            raise
+# upc_input = raw_input('Enter number to find\n')
 
-def mk_file(title):
-    try:
-        make_file = open(
-            '{path}/{movie_title}.dvd.disk'.format(path=movies_directory + directory_to_add, movie_title=title), 'w')
-        # information to enter into file
-        make_file.write(
-            "<discstub> <title> No location available</title>    <message> No location was given.</message>  </discstub>")
-        # close the file
-        make_file.close()
-        print('done')
-    except OSError as e:
-        if e.errno != errno.EEXIST:
-            raise
-        print('error')
-    # '{path}{title}.dvd.disk'.format(path='c:/users/movies/', title='titanic (2001)')
-    # 'C:\Users\Ryan\Desktop\movies\%s.dvd.disk' % title
+# class lookup:
+#     "UPC Lookup class"
+#     def __init__(self):
+#         self.upc_in = upc_in
+#         self.disc_title = disc_title
